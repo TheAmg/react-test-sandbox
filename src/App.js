@@ -3,17 +3,39 @@ import './App.css';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { click } from '@testing-library/user-event/dist/click';
+import { Routes, Route } from 'react-router-dom';
+import ImageSection from './jsxEntries/image-section/image-section';
+import CheckoutForm from './stripe/v2/checkoutform';
+import Payment from './stripe/v2/payment';
+import Completion from './stripe/v2/completion';
 
 function App() {
   return (
     <div>
-      <div className='leftSide'>
-        <h2 className='heading-left'>E-A-E</h2>
-        <EaEBoard/>
+      <Routes>
+        <Route path="/" element={<DualBoard />} />
+        <Route path="/is" element={<ImageSection />} />
+        <Route path="/dual" element={<DualBoard />} />
+        <Route path="/eae" element={<EaEBoard />} />
+        <Route path="/mine" element={<MiniMineSweeper />} />
+        <Route path="/pay" element={<Payment />} />
+        <Route path='/completion' element={<Completion />} />
+      </Routes>
+    </div>
+  );
+}
+
+function DualBoard()
+{
+  return(
+    <div>
+      <div className='leftside'>
+        <h2>E-A-E board</h2>
+        <EaEBoard />
       </div>
-      <div className='rightField'>
-        <h2 className='heading-right'>MinI Minesweeper</h2>
-        <MiniMineSweeper/>
+      <div className='rightside'>
+        <h2>Mini Minesweeper board</h2>
+        <MiniMineSweeper />
       </div>
     </div>
   );
