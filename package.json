@@ -2,7 +2,8 @@
   "name": "tic",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gitname.github.io/amg-stripe-pay-end",
+  "proxy": "http://localhost:3000",
+  "homepage": ".",
   "dependencies": {
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.4.0",
