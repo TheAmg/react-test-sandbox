@@ -4,14 +4,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkoutform";
 import { loadStripe } from "@stripe/stripe-js";
 
-//pk_test_51Pq6bEKwzyQ722nbJecUnqMxPJjUegLhBKp77XVS9GyfLJg0t8y9SHDfJGMkO4np7iXBak6x1joCWEibP2hmmM4f00jCX5ITqn
 
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState(null)
 
-  // const {customer_id, package_id} = useLocation()
+  const baseUrl = process.env.REACT_APP_DAPTIN_URL
 
   useEffect(()=>{
     const queryParameters = new URLSearchParams(window.location.search)
@@ -31,7 +30,7 @@ function Payment() {
 
   const prepareAndInitiatePayment = (customerId, packageId)=>
   {
-    fetch("http://localhost:6336/action/payment/pay_config").then(async (r) => {
+    fetch(`${baseUrl}/action/payment/pay_config`).then(async (r) => {
       const raw_data = await r.json();
       console.log("Raw data [key] :")
       console.log(raw_data)
@@ -45,7 +44,7 @@ function Payment() {
       transaction = generateNewTransactionId();
       setTransactionId(transaction);
 
-      fetch("http://localhost:6336/action/payment/initiate_transaction", {
+      fetch(`${baseUrl}/action/payment/initiate_transaction`, {
         method: "POST",
         body: JSON.stringify({ 
           transaction_id : transaction, 

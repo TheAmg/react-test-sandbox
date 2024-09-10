@@ -6,6 +6,7 @@ function Completion(props) {
     const [status, setStatus] = useState("Processing")
     const [currentCredits,setCurrentCredits] = useState(0)
     const { state } = useLocation()
+    const baseUrl = process.env.REACT_APP_DAPTIN_URL
     
     useEffect(()=>{
       console.log("In Status")
@@ -24,7 +25,7 @@ function Completion(props) {
 
     const verifyFromDaptin = (transaction)=> {
 
-        fetch("http://localhost:6336/action/payment/get_transaction_status", {
+        fetch(`${baseUrl}/action/payment/get_transaction_status`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ transaction_id: transaction }),
@@ -36,7 +37,7 @@ function Completion(props) {
         console.log("RETURN JSON 1")
         console.log(json)
         var customerId = json[0].Attributes[0].customer_id
-        fetch("http://localhost:6336/action/credits/calc_credit_v2", {
+        fetch(`${baseUrl}/action/credits/calc_credit_v2`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ customer_id: customerId }),
