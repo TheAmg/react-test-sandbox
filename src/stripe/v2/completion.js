@@ -27,7 +27,9 @@ function Completion(props) {
 
         fetch(`${baseUrl}/action/payment/get_transaction_status`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" ,
+          "ngrok-skip-browser-warning": "e",
+          },
           body: JSON.stringify({ transaction_id: transaction }),
       }).then(async (result) => {
         if (!result.ok) {
@@ -39,7 +41,9 @@ function Completion(props) {
         var customerId = json[0].Attributes[0].customer_id
         fetch(`${baseUrl}/action/credits/calc_credit_v2`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "e",
+           },
           body: JSON.stringify({ customer_id: customerId }),
         }).then(async (result) => {
             json = await result.json()

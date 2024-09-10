@@ -30,7 +30,11 @@ function Payment() {
 
   const prepareAndInitiatePayment = (customerId, packageId)=>
   {
-    fetch(`${baseUrl}/action/payment/pay_config`).then(async (r) => {
+    fetch(`${baseUrl}/action/payment/pay_config`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'e',
+      }
+    }).then(async (r) => {
       const raw_data = await r.json();
       console.log("Raw data [key] :")
       console.log(raw_data)
@@ -46,6 +50,9 @@ function Payment() {
 
       fetch(`${baseUrl}/action/payment/initiate_transaction`, {
         method: "POST",
+        headers: {
+          'ngrok-skip-browser-warning': 'e',
+        },
         body: JSON.stringify({ 
           transaction_id : transaction, 
           currency: "usd", 
