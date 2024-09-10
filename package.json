@@ -2,8 +2,7 @@
   "name": "tic",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
-  "homepage": ".",
+  "homepage": "https://theamg.github.io/react-test-sandbox/",
   "dependencies": {
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.4.0",
