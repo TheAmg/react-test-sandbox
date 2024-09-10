@@ -30,6 +30,9 @@ function Payment() {
 
   const prepareAndInitiatePayment = (customerId, packageId)=>
   {
+    const payconfig = `${baseUrl}/action/payment/pay_config`
+    console.log("Sending to : ")
+    console.log(payconfig)
     fetch(`${baseUrl}/action/payment/pay_config`, {
       headers: {
         'ngrok-skip-browser-warning': 'e',
@@ -47,6 +50,10 @@ function Payment() {
     {
       transaction = generateNewTransactionId();
       setTransactionId(transaction);
+
+      const payconfig = `${baseUrl}/action/payment/initiate_transaction`
+    console.log("Sending to 2 : ")
+    console.log(payconfig)
 
       fetch(`${baseUrl}/action/payment/initiate_transaction`, {
         method: "POST",
