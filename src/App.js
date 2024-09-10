@@ -1,11 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { click } from '@testing-library/user-event/dist/click';
 import { Routes, Route } from 'react-router-dom';
 import ImageSection from './jsxEntries/image-section/image-section';
-import CheckoutForm from './stripe/v2/checkoutform';
 import Payment from './stripe/v2/payment';
 import Completion from './stripe/v2/completion';
 
