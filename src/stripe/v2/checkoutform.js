@@ -30,19 +30,19 @@ export default function CheckoutForm({transactionId}) {
       redirect: 'if_required' 
     });
 
-    console.log("Checkout response")
-    console.log(response)
-    console.log("TransactionId")
-    console.log(transactionId)
+    console.log("Checkout response");
+    console.log(response);
+    console.log("TransactionId");
+    console.log(transactionId);
     
     if(Object.hasOwn(response, 'paymentIntent'))
     {
-    var status = response.paymentIntent.status
-    navigate("/completion",{state:{transaction_id:transactionId, payment_status:status}})
+      var status = response.paymentIntent.status;
+      navigate("/completion",{state:{transaction_id:transactionId, payment_status:status}});
     }
     else if(Object.hasOwn(response, 'error'))
     {
-      setMessage(response.error.message)
+      setMessage(response.error.message);
     }
     console.log();
 

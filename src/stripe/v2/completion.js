@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { usePostHog } from "posthog-js/react";
 
 function Completion(props) {
     
+    const posthog = usePostHog()
     const [status, setStatus] = useState("Processing")
     const [currentCredits,setCurrentCredits] = useState(0)
     const { state } = useLocation()
@@ -22,6 +24,20 @@ function Completion(props) {
       verifyFromDaptin(transaction)
     }, 3000);
     })
+
+    // Capture a pageview event
+    useEffect(() => {
+      if (posthog) {
+        posthog.capture('$pageview', { path: window.location.pathname })
+      }
+    }, [posthog])
+
+    // Capture when payment status changes
+    useEffect(() => {
+      if (posthog && status && status !== "Processing") {
+        posthog.capture('payment_completed', { status })
+      }
+    }, [posthog, status])
 
     const verifyFromDaptin = (transaction)=> {
 
@@ -67,8 +83,7 @@ function Completion(props) {
         <h3>Status : {status}</h3>
         <p>Your current credits : {currentCredits}</p>
       </div>
-    
-  );
+    );
 
   }
   

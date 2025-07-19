@@ -4,7 +4,6 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkoutform";
 import { loadStripe } from "@stripe/stripe-js";
 
-
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
